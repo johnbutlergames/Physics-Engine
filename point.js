@@ -17,6 +17,15 @@ class Point {
     exert(force) {
         this.vel.add(force.accel.scaled(force.m / this.m));
     }
+    distToLine(line) {
+        return Point.distToLine(this, line);
+    }
+    static distToLine(point, line) {
+        let lineToPoint = point.pos.subtracted(line.start.pos);
+        return line.normal.project(lineToPoint).length() - point.r;
+        // The part of the line to the point that points in the direction of the normal of the line
+        // minus the radius of the point
+    }
     static from({ x = 0, y = 0, xmove = 0, ymove = 0, r = 0, m = 0 }) {
         return new Point(new Vec2(x, y), new Vec2(xmove, ymove), r, m);
     }

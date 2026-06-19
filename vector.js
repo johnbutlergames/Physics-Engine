@@ -40,6 +40,9 @@ class Vec2 {
     dot(vector) {
         return this.x * vector.x + this.y * vector.y;
     }
+    project(vector) { // project vector onto this
+        return this.scaled(this.dot(vector) / this.dot(this));
+    }
     divided(vector) {
         return new Vec2(this.x / vector.x, this.y / vector.y);
     }
@@ -47,13 +50,13 @@ class Vec2 {
         return new Vec2(this.x * scalar, this.y * scalar);
     }
     distTo(vector) {
-        return distTo(this.x, this.y, vector.x, vector.y);
+        return Math.sqrt((this.x - vector.x) ** 2 + (this.y - vector.y) ** 2);
     }
     dirTo(vector) {
-        return dirTo(this.x, this.y, vector.x, vector.y);
+        return Math.atan2(vector.y - this.y, vector.x - this.x);
     }
     length() {
-        return distTo(0, 0, this.x, this.y);
+        return this.distTo(new Vec2(0, 0));
     }
     direction() {
         return dirTo(0, 0, this.x, this.y);

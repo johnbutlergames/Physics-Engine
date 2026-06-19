@@ -25,6 +25,19 @@ class Line {
     get direction() {
         return this.start.dirTo(this.end);
     }
+    get directionVector() {
+        return this.end.pos.subtracted(this.start.pos);
+    }
+    get normalVector() {
+        let { x, y } = this.directionVector;
+        return new Vec2(-y, x);
+    }
+    get normal() {
+        return this.normalVector;
+    }
+    distToPoint(point) {
+        return Point.distToLine(point, line);
+    }
     static from({ x1, y1, x2, y2 }) {
         return new Line(Point.from({ x: x1, y: y1 }), Point.from({ x: x2, y: y2 }));
     }
