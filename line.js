@@ -3,6 +3,10 @@ class Line {
         this.start = start;
         this.end = end;
     }
+    outline(ctx) {
+        ctx.moveTo(this.start.pos.x, this.start.pos.y);
+        ctx.lineTo(this.end.pos.x, this.end.pos.y);
+    }
     get x1() {
         return this.start.x;
     }
@@ -21,9 +25,7 @@ class Line {
     get direction() {
         return this.start.dirTo(this.end);
     }
-    outline(ctx) {
-        ctx.beginPath();
-        ctx.moveTo(this.start.pos.x, this.start.pos.y);
-        ctx.lineTo(this.end.pos.x, this.end.pos.y);
+    static from({ x1, y1, x2, y2 }) {
+        return new Line(Point.from({ x: x1, y: y1 }), Point.from({ x: x2, y: y2 }));
     }
 }

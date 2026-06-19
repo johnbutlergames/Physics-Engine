@@ -6,22 +6,27 @@ class Vec2 {
     add(vector) {
         this.x += vector.x;
         this.y += vector.y;
+        return this;
     }
     subtract(vector) {
         this.x -= vector.x;
         this.y -= vector.y;
+        return this;
     }
     multiply(vector) {
         this.x *= vector.x;
         this.y *= vector.y;
+        return this;
     }
     divide(vector) {
         this.x /= vector.x;
         this.y /= vector.y;
+        return this;
     }
     scale(scalar) {
         this.x *= scalar;
         this.y *= scalar;
+        return this;
     }
     added(vector) {
         return new Vec2(this.x + vector.x, this.y + vector.y);

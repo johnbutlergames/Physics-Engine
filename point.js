@@ -1,11 +1,11 @@
 class Point {
-    constructor(pos = new Vec2(0, 0), vel = new Vec2(0, 0), r = 0) {
-        this.pos = pos;
-        this.vel = vel;
-        this.r = r;
+    constructor(pos = new Vec2(0, 0), vel = new Vec2(0, 0), r = 0, m = 0) {
+        this.pos = pos; // position
+        this.vel = vel; // velocity
+        this.r = r;     // radius
+        this.m = m;     // mass
     }
     outline(ctx) {
-        ctx.beginPath();
         ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI);
     }
     distTo(point) {
@@ -13,5 +13,11 @@ class Point {
     }
     dirTo(point) {
         return this.pos.dirTo(point.pos);
+    }
+    exert(force) {
+        this.vel.add(force.accel.scaled(force.m / this.m));
+    }
+    static from({ x = 0, y = 0, xmove = 0, ymove = 0, r = 0, m = 0 }) {
+        return new Point(new Vec2(x, y), new Vec2(xmove, ymove), r, m);
     }
 }
