@@ -1,12 +1,12 @@
 function tick() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "black";
-    point.outline(ctx);
-    ctx.fill();
+    line.outline(ctx);
+    ctx.stroke();
 }
 
-let point = new Point();
-point.r = 10;
+let p1 = new Point(new Vec2(0, 0), new Vec2(0, 0), 10);
+let p2 = new Point(new Vec2(100, 100), new Vec2(0, 0), 10);
+let line = new Line(p1, p2);
 
 window.setInterval(tick, 10);

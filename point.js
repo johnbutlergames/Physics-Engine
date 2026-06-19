@@ -8,4 +8,10 @@ class Point {
         ctx.beginPath();
         ctx.arc(this.pos.x, this.pos.y, this.r, 0, 2 * Math.PI);
     }
+    distTo(point) {
+        return this.pos.distTo(point.pos);
+    }
+    dirTo(point) {
+        return this.pos.dirTo(point.pos);
+    }
 }
